@@ -1,9 +1,20 @@
 import { Link } from "react-router-dom"
-import { Button, Card} from "react-bootstrap"
+import { Button, Card } from "react-bootstrap"
+
+import getBackground from "../weatherBackground"
 
 const WeatherCard = function ({ weather }) {
+  const backgroundImage = getBackground(weather.weather[0].main)
+
   return (
-    <Card className="p-3 shadow border-0 rounded-5 text-center h-100">
+    <Card
+      className="p-3 shadow border-0 rounded-5 text-center h-100"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <Card.Body>
         <Card.Title>{weather.name}</Card.Title>
 
@@ -19,7 +30,9 @@ const WeatherCard = function ({ weather }) {
         </Card.Text>
 
         <Link to={`/details/${weather.name}`}>
-          <Button variant="dark">Details</Button>
+          <Button variant="light" className="bg-opacity-50">
+            Details
+          </Button>
         </Link>
       </Card.Body>
     </Card>
