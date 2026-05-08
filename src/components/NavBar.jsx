@@ -9,7 +9,7 @@ const NavBar = function(){
         <Nav className="me-auto">
           <Nav.Link href="/">Home</Nav.Link>
           {/* just testing the routing, to be deleted from NavBar when implemented in card: */}
-          <Nav.Link href="/details">Details</Nav.Link>  
+          {/* <Nav.Link href="/details">Details</Nav.Link>   */}
         </Nav>
       </Container>
     </Navbar>
