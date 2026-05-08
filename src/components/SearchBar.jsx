@@ -1,8 +1,10 @@
 import { Form, Button } from "react-bootstrap"
 import { useState } from "react"
+import WeatherCard from "./WeatherCard"
 
 const SearchBar = function () {
   const [search, setSearch] = useState("")
+  const [weather, setWeather] = useState(null)
 
   const fetchWeather = () => {
     fetch(
@@ -16,7 +18,11 @@ const SearchBar = function () {
         }
       })
       .then((data) => {
-        console.log("Weather Data:", data)
+        // first test data in console:
+        // console.log("Weather Data:", data)
+
+        // save data and show them in Home
+        setWeather(data)
       })
       .catch((error) => {
         console.log("Error:", error)
@@ -40,6 +46,8 @@ const SearchBar = function () {
       </Form>
       {/* test */}
       {/* <p>{search}</p> verified*/}
+      
+      {weather && <WeatherCard weather={weather} />}
     </>
   )
 }
