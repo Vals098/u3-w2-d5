@@ -1,0 +1,15 @@
+.home-background {
+  min-height: 100vh;
+
+  background: linear-gradient(180deg, #b7dcff 0%, #dbeeff 50%, #f5fbff 100%);
+}
+
+.details-background {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: 50% 80%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

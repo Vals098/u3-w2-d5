@@ -1,17 +1,18 @@
 import NavBar from "../components/NavBar"
 import SearchBar from "../components/SearchBar"
 import WeatherCard from "../components/WeatherCard"
+import Footer from "../components/Footer"
 
 import { useState, useEffect } from "react"
 
 import { Container, Row, Col } from "react-bootstrap"
 
 const cities = [
-  "Roma, IT",
+  "L'Aquila, IT",
   "Tokyo, JP",
   "London, UK",
   "Bangkok, TH",
-  "Berlin, DE",
+  "Roma, IT",
   "Sydney, AU",
   "Seoul, KR",
   "Cape Town, ZA"
@@ -43,13 +44,12 @@ const Home = function () {
   }, [])
 
   return (
-    <>
-      <NavBar />
-      <h1>Home</h1>
-      <div>
+    <div className="home-background">
+      <h1 className="text-center display-1 p-3">Your Weather App</h1>
+      <div className="px-3">
         <SearchBar />
       </div>
-      <Container className="mt-5">
+      <Container className="my-5">
         <Row className="g-4">
           {weatherList.map((weather) => (
             <Col sm={12} md={6} lg={3} key={weather.id}>
@@ -58,7 +58,8 @@ const Home = function () {
           ))}
         </Row>
       </Container>
-    </>
+         <Footer />
+    </div>
   )
 }
 

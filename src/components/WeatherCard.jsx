@@ -29,7 +29,9 @@ const WeatherCard = function ({ weather }) {
           {weather.weather[0].description}
         </Card.Text>
 
-        <Link to={`/details/${weather.name}`}>
+
+{/* filter by name and also country */}
+        <Link to={`/details/${weather.name},${weather.sys.country}`}>
           <Button variant="light" className="bg-opacity-50">
             Details
           </Button>

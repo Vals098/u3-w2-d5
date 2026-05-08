@@ -1,6 +1,6 @@
 import { Container, Row, Col, Card } from "react-bootstrap"
 
-import NavBar from "../components/NavBar"
+import Footer from "../components/Footer"
 
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -38,16 +38,13 @@ const Details = function () {
   return (
     <>
       <div
+        className="details-background"
         style={{
           backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          minHeight: "100vh",
         }}
       >
-        <NavBar />
         {weather && (
-          <Container className="mt-4">
+          <Container className="pt-4">
             <Card className="p-4 shadow-lg border-0 rounded-5 bg-light bg-opacity-50">
               <div className="text-center">
                 <h1>{weather.name}</h1>
@@ -83,6 +80,7 @@ const Details = function () {
             </Card>
           </Container>
         )}
+        <Footer />
       </div>
     </>
   )
