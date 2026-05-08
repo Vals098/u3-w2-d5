@@ -6,7 +6,8 @@ const SearchBar = function () {
   const [search, setSearch] = useState("")
   const [weather, setWeather] = useState(null)
 
-  const fetchWeather = () => {
+  const fetchWeather = (e) => {
+    e.preventDefault()
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=e7282535f1801102596260041d76bf77&units=metric`,
     )
@@ -31,7 +32,7 @@ const SearchBar = function () {
 
   return (
     <>
-      <Form className="d-flex">
+      <Form className="d-flex" onSubmit={fetchWeather}>
         <Form.Control
           type="search"
           placeholder="Search city..."
@@ -40,13 +41,13 @@ const SearchBar = function () {
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        <Button variant="primary" onClick={fetchWeather}>
+        <Button variant="primary" type="submit">
           Search
         </Button>
       </Form>
       {/* test */}
       {/* <p>{search}</p> verified*/}
-      
+
       {weather && <WeatherCard weather={weather} />}
     </>
   )
