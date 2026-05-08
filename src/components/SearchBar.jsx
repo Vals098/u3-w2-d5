@@ -28,6 +28,10 @@ const SearchBar = function () {
       .catch((error) => {
         console.log("Error:", error)
       })
+      
+    //   empty the Search Bar
+    setSearch("") 
+
   }
 
   return (
