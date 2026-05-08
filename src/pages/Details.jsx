@@ -22,6 +22,7 @@ const Details = function () {
     setIsLoading(true)
     setIsError(false)
 
+    // main card dets
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=e7282535f1801102596260041d76bf77&units=metric`,
     )
@@ -42,6 +43,7 @@ const Details = function () {
         setIsError(true)
       })
 
+    //   forecast
     fetch(
       `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=e7282535f1801102596260041d76bf77&units=metric`,
     )
@@ -112,7 +114,7 @@ const Details = function () {
             </Card>
             <Row className="mt-4 g-3 justify-content-center">
               {forecast.map((day) => (
-                <Col key={day.dt} sm={12} md={6} lg={2}>
+                <Col key={day.dt} xs={6} md={3} lg={2}>
                   <Card className="text-center p-3 bg-light bg-opacity-50 border-0 rounded-5">
                     <h5>{day.dt_txt.slice(5, 10)}</h5>
 
