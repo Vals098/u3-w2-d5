@@ -4,6 +4,8 @@ import WeatherCard from "../components/WeatherCard"
 
 import { useState, useEffect } from "react"
 
+import { Container, Row, Col } from "react-bootstrap"
+
 const cities = [
   "Roma, IT",
   "Tokyo, JP",
@@ -12,6 +14,7 @@ const cities = [
   "Berlin, DE",
   "Sydney, AU",
   "Seoul, KR",
+  "Cape Town, ZA"
 ]
 
 const Home = function () {
@@ -46,11 +49,15 @@ const Home = function () {
       <div>
         <SearchBar />
       </div>
-      <div>
-        {weatherList.map((weather) => (
-          <WeatherCard key={weather.id} weather={weather} />
-        ))}
-      </div>
+      <Container className="mt-5">
+        <Row className="g-4">
+          {weatherList.map((weather) => (
+            <Col sm={12} md={6} lg={3} key={weather.id}>
+              <WeatherCard weather={weather} />
+            </Col>
+          ))}
+        </Row>
+      </Container>
     </>
   )
 }

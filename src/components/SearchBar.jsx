@@ -62,7 +62,7 @@ const SearchBar = function () {
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        <Button variant="primary" type="submit">
+        <Button variant="dark" type="submit">
           Search
         </Button>
       </Form>
