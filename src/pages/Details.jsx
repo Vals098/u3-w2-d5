@@ -15,6 +15,8 @@ const Details = function () {
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
 
+  const [forecast, setForecast] = useState([])
+
   useEffect(() => {
     //   loading and error initial state
     setIsLoading(true)
@@ -38,6 +40,24 @@ const Details = function () {
         console.log(error)
         setIsLoading(false)
         setIsError(true)
+      })
+
+    fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=e7282535f1801102596260041d76bf77&units=metric`,
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        } else {
+          throw new Error("Error fetching forecast")
+        }
+      })
+      .then((data) => {
+        const dailyForecast = data.list.filter((item) =>
+          item.dt_txt.includes("12:00:00"),
+        )
+
+        setForecast(dailyForecast)
       })
   }, [cityName])
 
@@ -90,6 +110,26 @@ const Details = function () {
                 </Col>
               </Row>
             </Card>
+            <Row className="mt-4 g-3 justify-content-center">
+              {forecast.map((day) => (
+                <Col key={day.dt} sm={12} md={6} lg={2}>
+                  <Card className="text-center p-3 bg-light bg-opacity-50 border-0 rounded-5">
+                    <h5>{day.dt_txt.slice(5, 10)}</h5>
+
+                    <img
+                      src={`https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+                      alt="forecast icon"
+                    />
+
+                    <h4>{Math.round(day.main.temp)}°C</h4>
+
+                    <p className="text-capitalize">
+                      {day.weather[0].description}
+                    </p>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
           </Container>
         )}
         <Footer />
