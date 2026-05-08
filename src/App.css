@@ -2,6 +2,10 @@
   min-height: 100vh;
 
   background: linear-gradient(180deg, #b7dcff 0%, #dbeeff 50%, #f5fbff 100%);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .details-background {
@@ -12,4 +16,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.weather-content {
+  min-height: 600px;
 }

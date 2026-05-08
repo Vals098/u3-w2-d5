@@ -11,7 +11,15 @@ const Details = function () {
   const { cityName } = useParams()
   const [weather, setWeather] = useState(null)
 
+  //   loading and error
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
+
   useEffect(() => {
+    //   loading and error initial state
+    setIsLoading(true)
+    setIsError(false)
+
     fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=e7282535f1801102596260041d76bf77&units=metric`,
     )
@@ -24,14 +32,14 @@ const Details = function () {
       })
       .then((data) => {
         setWeather(data)
+        setIsLoading(false)
       })
-      .catch(
-        (error) => {
-          console.log(error)
-        },
-        [cityName],
-      )
-  })
+      .catch((error) => {
+        console.log(error)
+        setIsLoading(false)
+        setIsError(true)
+      })
+  }, [cityName])
 
   const backgroundImage = getBackground(weather?.weather[0].main)
 
@@ -43,6 +51,10 @@ const Details = function () {
           backgroundImage: `url(${backgroundImage})`,
         }}
       >
+        {isLoading && <h1 className="text-center pt-5">Loading...</h1>}
+
+        {isError && <h1 className="text-center pt-5">Error loading weather</h1>}
+
         {weather && (
           <Container className="pt-4">
             <Card className="p-4 shadow-lg border-0 rounded-5 bg-light bg-opacity-50">
